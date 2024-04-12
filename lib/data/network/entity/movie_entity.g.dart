@@ -20,7 +20,6 @@ Map<String, dynamic> _$UpcomingMoviesToJson(UpcomingMovies instance) =>
 
 MovieEntity _$MovieEntityFromJson(Map<String, dynamic> json) => MovieEntity(
       id: json['id'] as String,
-      resultId: json['resultId'] as String,
       primaryImage: json['primaryImage'] == null
           ? null
           : PrimaryImage.fromJson(json['primaryImage'] as Map<String, dynamic>),
@@ -36,7 +35,6 @@ MovieEntity _$MovieEntityFromJson(Map<String, dynamic> json) => MovieEntity(
 Map<String, dynamic> _$MovieEntityToJson(MovieEntity instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'resultId': instance.resultId,
       'primaryImage': instance.primaryImage,
       'titleText': instance.titleText,
       'originalTitleText': instance.originalTitleText,

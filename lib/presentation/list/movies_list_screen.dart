@@ -24,14 +24,15 @@ class _MoviesListScreenState extends State<MoviesListScreen> {
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             return ListView(
-                children: List.generate(
-              snapshot.data!.length,
-              (index) => ListTile(
-                title: Text(snapshot.data![index].title),
+              children: List.generate(
+                snapshot.data!.length,
+                (index) => ListTile(
+                  title: Text(snapshot.data![index].title),
+                ),
               ),
-            ));
+            );
           } else {
-            return const CircularProgressIndicator();
+            return const LinearProgressIndicator();
           }
         },
       ),

@@ -17,7 +17,6 @@ class UpcomingMovies {
 @JsonSerializable()
 class MovieEntity {
   String id;
-  String resultId;
   PrimaryImage? primaryImage;
   TitleText titleText;
   TitleText originalTitleText;
@@ -26,7 +25,6 @@ class MovieEntity {
 
   MovieEntity({
     required this.id,
-    required this.resultId,
     required this.primaryImage,
     required this.titleText,
     required this.originalTitleText,
