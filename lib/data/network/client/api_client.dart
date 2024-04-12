@@ -24,7 +24,7 @@ class ApiClient {
       );
   }
 
-  Future<UpcomingMovies> getUpComingMovies({
+  Future<UpcomingMovies> getUpcomingMovies({
     required int page,
     int? limit,
   }) async {

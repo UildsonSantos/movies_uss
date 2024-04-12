@@ -11,12 +11,12 @@ class MoviesRepository {
     required this.networkMapper,
   });
 
-  Future<List<Movie>> getUnComingMovies({
+  Future<List<Movie>> getUpcomingMovies({
     required int page,
     required int limit,
   }) async {
     final upcomingMuvies =
-        await apiClient.getUpComingMovies(page: page, limit: limit);
+        await apiClient.getUpcomingMovies(page: page, limit: limit);
 
     return networkMapper.toMovies(upcomingMuvies.results);
   }
