@@ -4,6 +4,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:logger/logger.dart';
+import 'package:movies_app/data/database/dao/movies_dao.dart';
+import 'package:movies_app/data/database/database_mapper.dart';
 import 'package:movies_app/data/network/client/api_client.dart';
 import 'package:movies_app/data/network/network_mapper.dart';
 import 'package:movies_app/data/repository/movies_repository.dart';
@@ -11,6 +13,7 @@ import 'package:movies_app/domain/model/config.dart';
 import 'package:movies_app/presentation/app/app.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
+import 'package:sqflite/sqflite.dart';
 
 class InitialData {
   final List<SingleChildWidget> providers;
@@ -20,6 +23,9 @@ class InitialData {
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  // ignore: deprecated_member_use, avoid_redundant_argument_values
+  await Sqflite.devSetDebugModeOn(kDebugMode);
 
   final data = await _createData();
 
@@ -44,9 +50,14 @@ Future<InitialData> _createData() async {
   );
 
   final networkMapper = NetworkMapper(log: log);
+  final moviesDao = MoviesDao();
+  final databaseMapper = DatabaseMapper(log: log);
+  
   final moviesRepository = MoviesRepository(
     apiClient: apiClient,
     networkMapper: networkMapper,
+    moviesDao: moviesDao,
+    databaseMapper: databaseMapper,
   );
 
   // Create list of providers
