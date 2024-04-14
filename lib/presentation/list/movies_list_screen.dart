@@ -51,20 +51,28 @@ class _MoviesListScreenState extends State<MoviesListScreen> {
       appBar: AppBar(
         title: const Text('Uncoming Movies'),
       ),
-      body: PagedListView<int, Movie>(
-        pagingController: _pagingController,
-        builderDelegate: PagedChildBuilderDelegate<Movie>(
-          itemBuilder: (context, movie, index) => Container(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 12.0,
-              vertical: 6.0,
-            ),
-            child: MoviePreview(
-              movie: movie,
+      body: RefreshIndicator(
+        onRefresh: _refresh,
+        child: PagedListView<int, Movie>(
+          pagingController: _pagingController,
+          builderDelegate: PagedChildBuilderDelegate<Movie>(
+            itemBuilder: (context, movie, index) => Container(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 12.0,
+                vertical: 6.0,
+              ),
+              child: MoviePreview(
+                movie: movie,
+              ),
             ),
           ),
         ),
       ),
     );
+  }
+
+  Future<void> _refresh() async {
+    await _model.deletePersistedMovies();
+    _pagingController.refresh();
   }
 }

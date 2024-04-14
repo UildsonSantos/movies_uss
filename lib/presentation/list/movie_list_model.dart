@@ -18,4 +18,13 @@ class MoviesListModel {
       rethrow;
     }
   }
+
+  Future<void> deletePersistedMovies() async {
+    try {
+      await moviesRepo.deleteAll();
+    } catch (e) {
+      log.e('Error when deleting movies', error: e);
+      rethrow;
+    }
+  }
 }
