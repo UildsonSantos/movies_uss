@@ -27,4 +27,13 @@ class MoviesListModel {
       rethrow;
     }
   }
+
+  Future<bool> hasNewData() async {
+    try {
+      return await moviesRepo.checkNewData();
+    } catch (e) {
+      log.e('Error when checking for new data', error: e);
+      return true;
+    }
+  }
 }
