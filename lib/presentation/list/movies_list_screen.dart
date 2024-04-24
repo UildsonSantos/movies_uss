@@ -49,7 +49,6 @@ class _MoviesListScreenState extends State<MoviesListScreen> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(
         title: const Text('Uncoming Movies'),

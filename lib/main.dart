@@ -52,7 +52,7 @@ Future<InitialData> _createData() async {
   final networkMapper = NetworkMapper(log: log);
   final moviesDao = MoviesDao();
   final databaseMapper = DatabaseMapper(log: log);
-  
+
   final moviesRepository = MoviesRepository(
     apiClient: apiClient,
     networkMapper: networkMapper,

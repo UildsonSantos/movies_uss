@@ -1,4 +1,3 @@
-
 import 'package:logger/logger.dart';
 import 'package:movies_app/data/repository/movies_repository.dart';
 import 'package:movies_app/domain/model/movie.dart';
@@ -9,8 +8,7 @@ class MoviesListModel {
 
   MoviesListModel({required this.log, required this.moviesRepo});
 
-  Future<List<Movie>> fetchPage(int page) async {
-    
+  Future<List<Movie>> fetchPage(int page) async {    
     try {
       return await moviesRepo.getUpcomingMovies(limit: 10, page: page);
     } catch (e) {
